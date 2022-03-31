@@ -63,7 +63,6 @@ const NUMBER_RANGE = Object.freeze({
 ## 더 공부하기
 
 - 유용한 배열 메서드
-- mutable, immutable
 
 > 메서드 사용 원리가 궁금하다면!
 
