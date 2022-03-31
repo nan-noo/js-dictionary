@@ -15,4 +15,4 @@
 
 3. document에 작성자의 생각이 포함될 수 있습니다.
 
-4. 새로 작성한 document는 index 문서에 추가됩니다.
+4. 새로 작성한 document는 [INDEX](https://github.com/nan-noo/js-dictionary/blob/main/INDEX.md) 문서에 추가됩니다.
