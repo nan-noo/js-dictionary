@@ -310,3 +310,4 @@ class Child extends Parent {
 - prototype
 - prototype chain
 - strict mode
+- this
