@@ -34,14 +34,14 @@ foo();
 
 - 암묵적 전역
 
-```js
-(function () {
-  "use strict";
+  ```js
+  (function () {
+    "use strict";
 
-  x = 1;
-  console.log(x); // ReferenceError: x is not defined
-})();
-```
+    x = 1;
+    console.log(x); // ReferenceError: x is not defined
+  })();
+  ```
 
 ### Type Error
 
@@ -51,96 +51,97 @@ foo();
   - getter-only 프로퍼티에 할당
   - 확장 불가 객체에 새 프로퍼티 할당
 
-```js
-"use strict";
+  ```js
+  "use strict";
 
-// 1. TypeError: Cannot assign to read only property 'undefined' of object '#<Window>'
-var undefined = 5;
-var Infinity = 5;
-var obj1 = {};
-Object.defineProperty(obj1, "x", { value: 42, writable: false });
-obj1.x = 9;
+  // 1. TypeError: Cannot assign to read only property 'undefined' of object '#<Window>'
+  var undefined = 5;
+  var Infinity = 5;
+  var obj1 = {};
+  Object.defineProperty(obj1, "x", { value: 42, writable: false });
+  obj1.x = 9;
 
-// 2. TypeError: Cannot set property x of #<Object> which has only a getter
-var obj2 = {
-  get x() {
-    return 17;
-  },
-};
-obj2.x = 5;
+  // 2. TypeError: Cannot set property x of #<Object> which has only a getter
+  var obj2 = {
+    get x() {
+      return 17;
+    },
+  };
+  obj2.x = 5;
 
-// 3. TypeError: Cannot add property newProp, object is not extensible
-var fixed = {};
-Object.preventExtensions(fixed);
-fixed.newProp = "ohai";
-```
+  // 3. TypeError: Cannot add property newProp, object is not extensible
+  var fixed = {};
+  Object.preventExtensions(fixed);
+  fixed.newProp = "ohai";
+  ```
 
 - 원시값에 속성 설정
 
-```js
-(function () {
-  "use strict";
+  ```js
+  (function () {
+    "use strict";
 
-  false.true = ""; // TypeError: Cannot create property 'true' on boolean 'false'
-})();
-```
+    false.true = ""; // TypeError: Cannot create property 'true' on boolean 'false'
+  })();
+  ```
 
 ### Syntax Error
 
 - 변수, 함수, 매개변수의 삭제
 
-```js
-(function () {
-  "use strict";
+  ```js
+  (function () {
+    "use strict";
 
-  var x = 1;
-  delete x; // SyntaxError: Delete of an unqualified identifier in strict mode.
-})();
-```
+    var x = 1;
+    delete x; // SyntaxError: Delete of an unqualified identifier in strict mode.
+  })();
+  ```
 
 - 매개변수 이름의 중복
 
-```js
-(function () {
-  "use strict";
+  ```js
+  (function () {
+    "use strict";
 
-  // SyntaxError: Duplicate parameter name not allowed in this context
-  function foo(x, x) {
-    return x + x;
-  }
-  console.log(foo(1, 2));
-})();
-```
+    // SyntaxError: Duplicate parameter name not allowed in this context
+    function foo(x, x) {
+      return x + x;
+    }
+    console.log(foo(1, 2));
+  })();
+  ```
 
 - 8진 구문
 
-```js
-(function () {
-  "use strict";
-  var sum =
-    015 + // SyntaxError: Octal literals are not allowed in strict mode.
-    197 +
-    142;
-})();
-```
+  ```js
+  (function () {
+    "use strict";
+    var sum =
+      015 + // SyntaxError: Octal literals are not allowed in strict mode.
+      197 +
+      142;
+  })();
+  ```
 
 - with 문의 사용
+
   > `with`문은 사용하지 않는 게 좋다고 한다.
 
-```js
-(function () {
-  "use strict";
+  ```js
+  (function () {
+    "use strict";
 
-  // SyntaxError: Strict mode code may not include a with statement
-  with ({ x: 1 }) {
-    console.log(x);
-  }
-})();
-```
+    // SyntaxError: Strict mode code may not include a with statement
+    with ({ x: 1 }) {
+      console.log(x);
+    }
+  })();
+  ```
 
 ## strict mode에서의 변화
 
-1. 일반 함수 `this`
+### 일반 함수 `this`
 
 ```js
 (function () {
@@ -157,7 +158,7 @@ fixed.newProp = "ohai";
 - strict mode에서 함수를 일반 함수로 호출하면, `this`에 `undefined`가 바인딩 됨
 - 원래는 일반 함수로 호출하면 전역 객체(`window`, `global` 등)가 바인딩 됨
 
-2. `arguments` 객체
+### `arguments` 객체
 
 ```js
 (function (x) {

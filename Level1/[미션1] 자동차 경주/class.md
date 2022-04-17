@@ -27,20 +27,20 @@ console.log(typeof Rectangle); // function
 
 ## 특징
 
-1. 호출시 `new` 연산자 필수
-2. 상속 지원 키워드(`extends`, `super`) 제공
-3. TDZ(Temporal Dead Zone) 존재
-4. 재정의 불가능
-5. 클래스 바디의 모든 코드는 strict mode
-6. 클래스의 모든 속성은 열거 불가능(`[[Enumerable]]`이 `false`)
+- 호출시 `new` 연산자 필수
+- 상속 지원 키워드(`extends`, `super`) 제공
+- TDZ(Temporal Dead Zone) 존재
+- 재정의 불가능
+- 클래스 바디의 모든 코드는 strict mode
+- 클래스의 모든 속성은 열거 불가능(`[[Enumerable]]`이 `false`)
 
 ## 메서드(method)
 
-1. 메서드 축약 표현 사용
-2. 콤마(,) 필요 없음
-3. strict mode
-4. 열거 불가능
-5. non-constuctor
+- 메서드 축약 표현 사용
+- 콤마(,) 필요 없음
+- strict mode
+- 열거 불가능
+- non-constuctor
 
 ### constructor
 
