@@ -30,7 +30,7 @@ console.log(this); // Window
 
 ### 함수
 
-1. 단순 호출
+#### 1. 단순 호출
 
 ```js
 function foo() {
@@ -53,7 +53,7 @@ foo(); // undefined
   > 이 부분 때문에 많이 헷갈림. 설계상의 오류라고도 함!
 - strict mode: `undefined`
 
-2. 메서드로 호출
+#### 2. 메서드로 호출
 
 ```js
 function foo() {
@@ -73,7 +73,7 @@ obj["method"](); // {myName: 'TaeTae', method: ƒ}, TaeTae
 
 - `.` 또는 `[]` 앞의 객체를 참조
 
-3. 생성자 함수로 호출
+#### 3. 생성자 함수로 호출
 
 ```js
 function Foo(myName) {
@@ -90,7 +90,7 @@ console.log(foo.myName); // TaeTae
 - `new` 키워드로 호출시, 생성된 instance를 `this`에 바인딩
 - class도 마찬가지
 
-4. 콜백 함수로 호출
+#### 4. 콜백 함수로 호출
 
 ```js
 function callback(e) {
@@ -106,7 +106,7 @@ div.addEventListener("click", callback);
 - 제어권을 가진 함수가 콜백에 `this`를 지정하는 경우에는 그 값 - 아닌 경우에는 단순 호출과 같음
 - `addEventListener` 메서드는 자신의 `this`를 넘겨주도록 정의되어 있기 때문에, 콜백함수의 `this`도 `.` 앞의 요소가 됨
 
-5. 화살표 함수로 호출
+#### 5. 화살표 함수로 호출
 
 ```js
 function Foo() {
