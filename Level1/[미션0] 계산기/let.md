@@ -14,17 +14,54 @@ let varname1 [= value1] [, varname2 [= value2]] [, ..., varnameN [= valueN]];
 
 ---
 
-## 설명
-
-### 변수 선언
+## 변수 선언
 
 - 데이터가 담길 메모리 공간 확보
 - 확보한 메모리 공간의 주소를 담음
 - 변수명(식별자)을 통해 해당 데이터에 접근할 수 있음
 
-### 특징
+## 변수 선언을 해야 하는 이유
 
-#### 1. 중복 선언 금지
+### 1. 선언하지 않은 변수는 항상 전역 변수
+
+```js
+function x() {
+  y = 1;
+  var z = 2;
+}
+
+x();
+
+console.log(y); // 1
+console.log(z); // ReferenceError: z is not defined
+```
+
+### 2. 선언하지 않은 변수는 할당문이 실행되기 전까지 존재하지 않음
+
+```js
+console.log(a); // ReferenceError: a is not defined
+console.log("still going..."); // 실행되지 않음
+
+var a;
+console.log(a); // undefined
+console.log("still going..."); // 실행됨
+```
+
+### 3. 선언하지 않은 변수는 실행 컨텍스트 속성에서 변경 가능(configurable)
+
+```js
+var a = 1;
+b = 2;
+
+delete this.a; // 실패 -> 선언된 변수는 non-configurable
+delete this.b; // 성공 -> b는 실행 컨텍스트(객체) 속성에서 제거됨
+
+console.log(a, b); // ReferenceError: b is not defined
+```
+
+## 특징
+
+### 1. 중복 선언 금지
 
 - 같은 스코프 내에서 중복 선언 금지
 
@@ -33,7 +70,7 @@ let x = 1;
 let x = 100; // Uncaught SyntaxError: Identifier 'x' has already been declared
 ```
 
-#### 2. 블록 레벨 스코프
+### 2. 블록 레벨 스코프
 
 - 자신을 선언한 블록을 로컬 스코프로 인정
 
@@ -49,7 +86,7 @@ if (true) {
 console.log(x); // 1
 ```
 
-#### 3. TDZ(Temporal Dead Zone)
+### 3. TDZ(Temporal Dead Zone)
 
 - let으로 선언된 변수 스코프의 최상단에서 변수 초기화 완료 시점까지
 - 코드 작성 순서가 아닌, 코드 실행 순서에 의해 형성
