@@ -14,19 +14,56 @@ const varname1 = value1 [, varname2 = value2 [, ... [, varnameN = valueN]]];
 
 ---
 
-## 설명
-
-### 변수 선언
+## 변수 선언
 
 - 데이터가 담길 메모리 공간 확보
 - 확보한 메모리 공간의 주소를 담음
 - 변수명(식별자)을 통해 해당 데이터에 접근할 수 있음
 
-### 특징
+## 변수 선언을 해야 하는 이유
+
+### 1. 선언하지 않은 변수는 항상 전역 변수
+
+```js
+function x() {
+  y = 1;
+  var z = 2;
+}
+
+x();
+
+console.log(y); // 1
+console.log(z); // ReferenceError: z is not defined
+```
+
+### 2. 선언하지 않은 변수는 할당문이 실행되기 전까지 존재하지 않음
+
+```js
+console.log(a); // ReferenceError: a is not defined
+console.log("still going..."); // 실행되지 않음
+
+var a;
+console.log(a); // undefined
+console.log("still going..."); // 실행됨
+```
+
+### 3. 선언하지 않은 변수는 실행 컨텍스트 속성에서 변경 가능(configurable)
+
+```js
+var a = 1;
+b = 2;
+
+delete this.a; // 실패 -> 선언된 변수는 non-configurable
+delete this.b; // 성공 -> b는 실행 컨텍스트(객체) 속성에서 제거됨
+
+console.log(a, b); // ReferenceError: b is not defined
+```
+
+## 특징
 
 기본적으로 let의 성질은 모두 갖고 있음
 
-#### 1. 선언과 초기화
+### 1. 선언과 초기화
 
 - 선언과 동시에 초기값을 할당해야 함
 
@@ -34,7 +71,7 @@ const varname1 = value1 [, varname2 = value2 [, ... [, varnameN = valueN]]];
 const x; // SyntaxError: Missing initializer in const declaration
 ```
 
-#### 2. 재할당 금지
+### 2. 재할당 금지
 
 ```js
 const x = 1;
@@ -42,7 +79,7 @@ const x = 1;
 x = 100; // Uncaught TypeError: Assignment to constant variable
 ```
 
-#### 3. 상수 선언
+### 3. 상수 선언
 
 - JS 상수 특징:
   - 대입 연산자로 재할당 불가능
